@@ -7,8 +7,8 @@ from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import train_test_split
 
 
-def load_data():
-    return pd.read_csv("./data/merged_train.csv")
+def load_data(path="./data/merged_train.csv"):
+    return pd.read_csv(path)
 
 
 def get_features_and_labels(data):
