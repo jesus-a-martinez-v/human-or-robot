@@ -5,7 +5,7 @@ from train_best import train_best
 from train_candidates import train_candidates
 import os
 
-menu = """
+_menu_message = """
 Project runner. You can run each stage separately or all at once. Here are your options:
     - [0]: All. No interruptions.
     - [1]: Summarize Data.
@@ -15,13 +15,13 @@ Project runner. You can run each stage separately or all at once. Here are your 
     - [5]: Run best classifier on the test set.
 """
 
-continue_message = """
+_continue_message = """
 DONE. Continue? 
     - [0] No
     - [1] Yes
 """
 
-stages = {1: ('Summarize Data', summarize_data),
+_stages = {1: ('Summarize Data', summarize_data),
           2: ('Prepare training and test sets', prepare_train_and_test_data),
           3: ('Train candidate classifiers', train_candidates),
           4: ('Train top 3 candidate classifiers', train_best),
@@ -53,7 +53,7 @@ def run():
 
     while not correct_input:
 
-        user_input = input(menu)
+        user_input = input(_menu_message)
         user_input = user_input.strip()
 
         if not user_input.isnumeric():
@@ -77,14 +77,14 @@ def run():
                 no_interruptions = True
 
         for stage in range(option, 6):
-            stage_name, stage_function = stages[stage]
+            stage_name, stage_function = _stages[stage]
             print("Running stage " + str(stage) + ":", stage_name)
             stage_function()
 
             if no_interruptions:
                 continue
 
-            continue_option = int(input(continue_message))
+            continue_option = int(input(_continue_message))
             if not continue_option:
                 break
 
