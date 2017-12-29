@@ -76,9 +76,11 @@ def run():
                 option = 1
                 no_interruptions = True
 
-        for stage in range(option, 6):
-            stage_name, stage_function = _stages[stage]
-            print("Running stage " + str(stage) + ":", stage_name)
+        for stage_number in range(option, 6):
+            stage_name, stage_function = _stages[stage_number]
+
+            print("Running stage " + str(stage_number) + ":", stage_name)
+
             stage_function()
 
             if no_interruptions:
