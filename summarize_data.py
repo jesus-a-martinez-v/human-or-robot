@@ -44,5 +44,6 @@ def summarize_data():
     __merge_with_data_set(pd.read_csv("./data/test.csv"), summary).to_csv("./data/merged_test.csv", encoding='utf-8',
                                                                           index=False)
 
+
 if __name__ == "__main__":
     summarize_data()

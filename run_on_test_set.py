@@ -14,3 +14,7 @@ def run_on_test_set():
 
     print("Submission created")
     test_data[['bidder_id', 'prediction']].to_csv('./data/submission.csv', index=False)
+
+
+if __name__ == "__main__":
+    run_on_test_set()
