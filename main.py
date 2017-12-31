@@ -1,9 +1,11 @@
-from prepare_train_and_test_sets import prepare_train_data, prepare_test_data, prepare_train_and_test_data
+import os
+import sys
+
+from prepare_train_and_test_sets import prepare_train_and_test_data
 from run_on_test_set import run_on_test_set
 from summarize_data import summarize_data
 from train_best import train_best
 from train_candidates import train_candidates
-import os
 
 _menu_message = """
 Project runner. You can run each stage separately or all at once. Here are your options:
@@ -52,13 +54,15 @@ def run():
     correct_input = False
 
     while not correct_input:
+        if len(sys.argv) > 1:
+            user_input = sys.argv[-1]
+        else:
+            user_input = input(_menu_message)
+            user_input = user_input.strip()
 
-        user_input = input(_menu_message)
-        user_input = user_input.strip()
-
-        if not user_input.isnumeric():
-            print("No numeric option provided. Try again")
-            continue
+            if not user_input.isnumeric():
+                print("No numeric option provided. Try again")
+                continue
 
         option = int(user_input)
         no_interruptions = False
