@@ -1,6 +1,7 @@
 import os
 import sys
 
+from feature_importances import plot_feature_importances
 from prepare_train_and_test_sets import prepare_train_and_test_data
 from run_on_test_set import run_on_test_set
 from summarize_data import summarize_data
@@ -15,6 +16,7 @@ Project runner. You can run each stage separately or all at once. Here are your 
     - [3]: Train candidate classifiers.
     - [4]: Train top 3 candidate classifiers.
     - [5]: Run best classifier on the test set.
+    - [6]: Plot feature importances.
 """
 
 _continue_message = """
@@ -24,10 +26,11 @@ DONE. Continue?
 """
 
 _stages = {1: ('Summarize Data', summarize_data),
-          2: ('Prepare training and test sets', prepare_train_and_test_data),
-          3: ('Train candidate classifiers', train_candidates),
-          4: ('Train top 3 candidate classifiers', train_best),
-          5: ('Run best classifier on the test set', run_on_test_set)}
+           2: ('Prepare training and test sets', prepare_train_and_test_data),
+           3: ('Train candidate classifiers', train_candidates),
+           4: ('Train top 3 candidate classifiers', train_best),
+           5: ('Run best classifier on the test set', run_on_test_set),
+           6: ('Plot feature importances', plot_feature_importances)}
 
 
 def _clean():
@@ -67,7 +70,7 @@ def run():
         option = int(user_input)
         no_interruptions = False
 
-        if option > 5:
+        if option > 6:
             print("Unknown option " + str(option) + " please try again.")
             continue
 
@@ -80,7 +83,7 @@ def run():
                 option = 1
                 no_interruptions = True
 
-        for stage_number in range(option, 6):
+        for stage_number in range(option, 7):
             stage_name, stage_function = _stages[stage_number]
 
             print("Running stage " + str(stage_number) + ":", stage_name)

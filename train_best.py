@@ -39,7 +39,8 @@ def train_best():
 
         print("BEST PARAMETERS:")
         pprint(best_parameters)
-        print("Tuned model has AUROC: ", score)
+        print("Tuned model has AUROC on the validation set: ", score)
+        print("Tuned model has AUROC on the training set: ", roc_auc_score(y_train, best_estimator.predict(X_train)))
         print("---------------------- \n\n")
 
     with open("best.p", "wb") as f:
